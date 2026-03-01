@@ -1,0 +1,5 @@
+{
+  "name": "Team Broken",
+  "description": "Elite Cybersecurity Assistant and Ethical Hacking Dashboard",
+  "requestFramePermissions": ["microphone"]
+}

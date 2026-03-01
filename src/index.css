@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --color-matrix-green: #00ff41;
+  --color-matrix-bg: #050505;
+  --color-matrix-surface: #0f0f0f;
+  --color-matrix-border: #1a1a1a;
+}
+
+@layer base {
+  body {
+    @apply bg-matrix-bg text-white font-sans selection:bg-matrix-green selection:text-black;
+    overflow: hidden;
+  }
+
+  /* Scanline effect */
+  body::before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    z-index: 100;
+    background-size: 100% 2px, 3px 100%;
+    pointer-events: none;
+    opacity: 0.15;
+  }
+
+  body::after {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(18, 16, 16, 0.1);
+    opacity: 0;
+    z-index: 100;
+    pointer-events: none;
+    animation: flicker 0.15s infinite;
+  }
+}
+
+@keyframes flicker {
+  0% { opacity: 0.27861; }
+  5% { opacity: 0.34769; }
+  10% { opacity: 0.23604; }
+  15% { opacity: 0.90626; }
+  20% { opacity: 0.18128; }
+  25% { opacity: 0.83891; }
+  30% { opacity: 0.65583; }
+  35% { opacity: 0.57807; }
+  40% { opacity: 0.26559; }
+  45% { opacity: 0.84693; }
+  50% { opacity: 0.96019; }
+  55% { opacity: 0.08523; }
+  60% { opacity: 0.71056; }
+  65% { opacity: 0.73437; }
+  70% { opacity: 0.28574; }
+  75% { opacity: 0.96387; }
+  80% { opacity: 0.22603; }
+  85% { opacity: 0.20400; }
+  90% { opacity: 0.45619; }
+  95% { opacity: 0.38520; }
+  100% { opacity: 0.19213; }
+}
+
+.terminal-glow {
+  text-shadow: 0 0 5px rgba(0, 255, 65, 0.7), 0 0 10px rgba(0, 255, 65, 0.5);
+}
+
+.glass-header {
+  @apply bg-matrix-surface/80 backdrop-blur-md border-b border-matrix-border;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  @apply bg-matrix-bg;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-matrix-border hover:bg-matrix-green/50 transition-colors;
+}
+
+.markdown-body {
+  @apply font-mono text-sm leading-relaxed;
+}
+
+.markdown-body p {
+  @apply mb-4;
+}
+
+.markdown-body pre {
+  @apply bg-black/50 p-4 rounded-lg border border-matrix-border mb-4 overflow-x-auto;
+}
+
+.markdown-body code {
+  @apply text-matrix-green font-bold;
+}
+
+.markdown-body h1, .markdown-body h2, .markdown-body h3 {
+  @apply text-matrix-green font-bold mb-4 mt-6;
+}
+
+.markdown-body ul, .markdown-body ol {
+  @apply mb-4 pl-6;
+}
+
+.markdown-body li {
+  @apply mb-1;
+}
